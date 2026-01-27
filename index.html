@@ -42,25 +42,23 @@
         .button-link {
             display: inline-block;
             margin: 8px 5px;
-            padding: 10px 15px;
-            border: 2px solid #007aff;
+            padding: 12px 20px; /* 少し太めにすると押しやすくなります */
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            color: #007aff;
-            transition: all 0.3s;
+            color: #ffffff; /* 文字を白に固定 */
+            transition: opacity 0.3s;
+            border: none; /* 縁取りを消してスッキリさせます */
         }
         .button-link:hover {
-            background-color: #007aff;
-            color: #ffffff;
+            opacity: 0.8; /* ホバーした時に少し透けさせて反応を見せます */
         }
-        /* スタバ用カラー */
-        .sb-btn { border-color: #007647; color: #007647; }
-        .sb-btn:hover { background-color: #007647; }
         
-        /* ねころぐ用カラー */
-        .neko-btn { border-color: #ff9500; color: #ff9500; }
-        .neko-btn:hover { background-color: #ff9500; }
+        /* スタバ用：背景を緑に */
+        .sb-btn { background-color: #007647; }
+        
+        /* ねころぐ用：背景をオレンジに */
+        .neko-btn { background-color: #ff9500; }
     </style>
 </head>
 <body>
@@ -71,7 +69,7 @@
         <div class="app-section">
             <h2>🐱 猫の健康管理アプリ『ねころぐ』</h2>
             <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230751" class="button-link neko-btn">プライバシーポリシー</a>
-            <a href="https://rainbowdevlog.hatenablog.com/" class="button-link neko-btn">使い方はこちら（ブログ）</a>
+            <a href="https://rainbowdevlog.hatenablog.com/" class="button-link neko-btn">アプリの使い方</a>
         </div>
 
         <div class="app-section">
