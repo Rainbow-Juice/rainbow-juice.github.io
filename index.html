@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スタバMSPサポート - サポート</title>
+    <title>Rainbow Juice アプリサポート</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -22,49 +22,66 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #007647; /* スタバをイメージした緑 */
+            color: #333;
             font-size: 24px;
             margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        h2 {
+            font-size: 20px;
+            margin-top: 30px;
+            color: #555;
         }
-        a {
-            color: #007647;
-            text-decoration: underline;
-            font-weight: 600;
+        .app-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
         }
         .button-link {
             display: inline-block;
-            margin: 10px 0;
-            padding: 10px 20px;
-            border: 2px solid #007647;
+            margin: 8px 5px;
+            padding: 10px 15px;
+            border: 2px solid #007aff;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s, color 0.3s;
+            color: #007aff;
+            transition: all 0.3s;
         }
         .button-link:hover {
-            background-color: #007647;
+            background-color: #007aff;
             color: #ffffff;
         }
+        /* スタバ用カラー */
+        .sb-btn { border-color: #007647; color: #007647; }
+        .sb-btn:hover { background-color: #007647; }
+        
+        /* ねころぐ用カラー */
+        .neko-btn { border-color: #ff9500; color: #ff9500; }
+        .neko-btn:hover { background-color: #ff9500; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>スタバMSPサポート アプリ サポートページ</h1>
-        <p>このページは、App Storeで配信するアプリのサポート情報を提供しています。</p>
-        <p>アプリは現在 App Store で配信中です。</p>
-        <p style="margin-top: 30px;">
-            <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/203609" class="button-link">プライバシーポリシーはこちら</a>
-        </p>
-        <p>
-            <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/021950" class="button-link">アプリの詳しい使い方（操作説明）</a>
-        </p>
+        <h1>Rainbow Juice アプリサポート</h1>
+        <p>App Storeで配信中のアプリに関するサポート情報です。</p>
+
+        <div class="app-section">
+            <h2>🐱 猫の健康管理アプリ『ねころぐ』</h2>
+            <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230751" class="button-link neko-btn">プライバシーポリシー</a>
+            <a href="https://rainbowdevlog.hatenablog.com/" class="button-link neko-btn">使い方はこちら（ブログ）</a>
+        </div>
+
+        <div class="app-section">
+            <h2>☕️ スタバMSPサポート</h2>
+            <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/203609" class="button-link sb-btn">プライバシーポリシー</a>
+            <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/021950" class="button-link sb-btn">アプリの使い方</a>
+        </div>
+
         <p style="margin-top: 30px; font-size: 14px; color: #777;">
-            ※ 本アプリはスターバックスコーヒージャパン株式会社とは一切関係のない、非公式の個人ツールです。
+            お問い合わせは App Store のレビュー欄またはブログのコメント欄までお願いいたします。
         </p>
     </div>
 </body>
