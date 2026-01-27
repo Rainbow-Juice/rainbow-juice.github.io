@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Juice アプリサポート</title>
+    <title>アプリサポート - Rainbow Juice</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 40px;
+            padding: 40px 20px;
             background-color: #f4f4f4;
             color: #333;
             text-align: center;
@@ -23,53 +23,75 @@
         }
         h1 {
             color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
         }
         h2 {
-            font-size: 20px;
-            margin-top: 30px;
-            color: #555;
+            font-size: 18px;
+            margin-top: 10px;
+            color: #444;
         }
         .app-section {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            background-color: #fafafa;
         }
         .button-link {
             display: inline-block;
             margin: 8px 5px;
-            padding: 12px 20px; /* 少し太めにすると押しやすくなります */
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 25px; /* 丸みを強めてよりモダンに */
             text-decoration: none;
             font-weight: bold;
-            color: #ffffff; /* 文字を白に固定 */
-            transition: opacity 0.3s;
-            border: none; /* 縁取りを消してスッキリさせます */
+            color: #ffffff;
+            transition: transform 0.2s, opacity 0.2s;
+            border: none;
+            font-size: 14px;
         }
         .button-link:hover {
-            opacity: 0.8; /* ホバーした時に少し透けさせて反応を見せます */
+            opacity: 0.8;
+            transform: translateY(-1px);
         }
         
-        /* スタバ用：背景を緑に */
-        .sb-btn { background-color: #007647; }
-        
-        /* ねころぐ用：背景をオレンジに */
-        .neko-btn { background-color: #ff9500; }
+        /* ボタンの色設定 */
+        .neko-btn { background-color: #ff9500; } /* ねころぐオレンジ */
+        .sb-btn { background-color: #007647; }   /* スタバグリーン */
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .contact-info a {
+            color: #007aff;
+            text-decoration: none;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Rainbow Juice アプリサポート</h1>
-        <p>App Storeで配信中のアプリに関するサポート情報です。</p>
+        <h1>アプリサポート</h1>
+        <p class="subtitle">Rainbow Juice が提供するアプリのサポート情報です</p>
 
         <div class="app-section">
-            <h2>🐱 猫の健康管理アプリ『ねころぐ』</h2>
+            <h2>🐱 猫の健康管理『ねころぐ』</h2>
             <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230751" class="button-link neko-btn">プライバシーポリシー</a>
-            <a href="https://rainbowdevlog.hatenablog.com/" class="button-link neko-btn">アプリの使い方</a>
+            <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230737" class="button-link neko-btn">アプリの使い方</a>
         </div>
 
         <div class="app-section">
@@ -78,9 +100,20 @@
             <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/021950" class="button-link sb-btn">アプリの使い方</a>
         </div>
 
-        <p style="margin-top: 30px; font-size: 14px; color: #777;">
-            お問い合わせは App Store のレビュー欄またはブログのコメント欄までお願いいたします。
-        </p>
+        <div class="contact-info">
+            お問い合わせ・ご要望はこちらまで<br>
+            Email: <a href="mailto:rainbow.devlog@gmail.com">rainbow.devlog@gmail.com</a><br>
+            X (Twitter): <a href="https://x.com/RainbowsDevlog" target="_blank">@RainbowsDevlog</a>
+        </div>
+
+        <footer>
+            &copy; <span id="year"></span> Rainbow Juice
+        </footer>
+
+        <script>
+            // 今日の日付から「年」だけを取り出して、id="year" の場所に表示させる
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
     </div>
 </body>
 </html>
