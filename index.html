@@ -27,9 +27,10 @@
             margin-bottom: 10px;
         }
         .subtitle {
-            font-size: 16px;
+            font-size: 15px;
             color: #666;
             margin-bottom: 30px;
+            line-height: 1.5;
         }
         h2 {
             font-size: 18px;
@@ -46,8 +47,8 @@
         .button-link {
             display: inline-block;
             margin: 8px 5px;
-            padding: 12px 24px;
-            border-radius: 25px; /* 丸みを強めてよりモダンに */
+            padding: 10px 20px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             color: #ffffff;
@@ -59,10 +60,18 @@
             opacity: 0.8;
             transform: translateY(-1px);
         }
+        .store-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #007aff;
+            text-decoration: none;
+        }
         
-        /* ボタンの色設定 */
-        .neko-btn { background-color: #ff9500; } /* ねころぐオレンジ */
-        .sb-btn { background-color: #007647; }   /* スタバグリーン */
+        /* アプリ別の色設定 */
+        .neko-btn { background-color: #ff9500; } /* ねころぐ */
+        .bus-btn { background-color: #0055aa; }  /* 関バス（青系） */
+        .sb-btn { background-color: #007647; }   /* スタバ */
 
         .contact-info {
             margin-top: 40px;
@@ -72,26 +81,29 @@
             color: #555;
             line-height: 1.8;
         }
-        .contact-info a {
-            color: #007aff;
-            text-decoration: none;
-        }
-        footer {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #999;
-        }
+        .contact-info a { color: #007aff; text-decoration: none; }
+        footer { margin-top: 30px; font-size: 12px; color: #999; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>アプリサポート</h1>
-        <p class="subtitle">Rainbow Juice が提供するアプリのサポート情報です</p>
+        <p class="subtitle">日常を少し便利にする、Rainbow Juice の個人開発アプリです</p>
 
         <div class="app-section">
             <h2>🐱 猫の健康管理『ねころぐ』</h2>
             <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230751" class="button-link neko-btn">プライバシーポリシー</a>
             <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230737" class="button-link neko-btn">アプリの使い方</a>
+            <br>
+            <a href="https://apps.apple.com/jp/app/id6740697920" target="_blank" class="store-link">👉 App Store で見る</a>
+        </div>
+
+        <div class="app-section">
+            <h2>🚌 関バス時刻表</h2>
+            <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/07/231431" class="button-link bus-btn">プライバシーポリシー</a>
+            <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/07/231053" class="button-link bus-btn">アプリの使い方</a>
+            <br>
+            <a href="https://apps.apple.com/jp/app/id6739956428" target="_blank" class="store-link">👉 App Store で見る</a>
         </div>
 
         <div class="app-section">
@@ -109,11 +121,10 @@
         <footer>
             &copy; <span id="year"></span> Rainbow Juice
         </footer>
-
-        <script>
-            // 今日の日付から「年」だけを取り出して、id="year" の場所に表示させる
-            document.getElementById("year").textContent = new Date().getFullYear();
-        </script>
     </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
