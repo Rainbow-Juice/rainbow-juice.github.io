@@ -160,6 +160,7 @@
       border: 4px solid #fff; box-shadow: 0 12px 28px rgba(0,0,0,.13);
     }
     .featured-app-pair img + img { margin-left: -18px; transform: rotate(5deg); }
+    .featured-app-pair img:nth-child(3) { transform: rotate(-4deg); }
 
     .apps-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
     .app-card {
@@ -191,6 +192,7 @@
     .bus { --accent: #e12a20; }
     .ds { --accent: #43b97f; }
     .task { --accent: #4a90e2; }
+    .sake { --accent: #1b3b2b; }
 
     .philosophy { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
     .philosophy h2 { position: sticky; top: 105px; }
@@ -304,9 +306,10 @@
             <article class="feature-card secondary hobby">
               <p class="feature-label">趣味をもっと楽しく</p>
               <h3>趣味に特化したアプリを探す。</h3>
-              <p>スタバのMyStorePassport管理やハドフのチェックインを、もっと便利に。</p>
+              <p>日本酒の記録、スタバのMyStorePassport管理、ハドフのチェックインをもっと便利に。</p>
               <a class="feature-link" href="#hobby">趣味アプリを見る&nbsp;›</a>
               <div class="featured-app-pair" aria-hidden="true">
+                <img src="assets/sakelog.png" alt="">
                 <img src="assets/msp-support.png" alt="">
                 <img src="assets/hardoff-checker.png" alt="">
               </div>
@@ -353,7 +356,18 @@
             </div>
           </article>
 
-          <article class="app-card starbucks" id="hobby">
+          <article class="app-card sake" id="hobby">
+            <img class="app-icon" src="assets/sakelog.png" alt="さけろぐのアプリアイコン">
+            <h3>さけろぐ</h3>
+            <p class="app-summary">ラベルを撮って、飲んだ日本酒を手軽に記録。銘柄情報の補完、日本地図のコレクション、6軸の味わいによる好み分析に対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/app/%E3%81%95%E3%81%91%E3%82%8D%E3%81%90/id6808960248" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/09/06/232229" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/09/05/211440" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card starbucks">
             <img class="app-icon" src="assets/msp-support.png" alt="スタバMSPサポートのアプリアイコン">
             <h3>スタバMSPサポート</h3>
             <p class="app-summary">スタバのMyStorePassportを記録する非公式アプリ。訪問状況の検索、店舗メモ、ルート検索、地図連携に対応します。</p>
