@@ -1,1 +1,173 @@
-<!doctype html><html lang="ja"><meta charset="utf-8"><title>MusicStart</title><p>公開準備中</p></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1830">
+  <meta name="description" content="MusicStartは式典・イベントの音源を必要な瞬間に再生するiPhone・iPad向けサウンドプレイヤー。A画面の大きなボタン、B画面の個別音量調整、シート管理に対応します。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="Rainbow Juice">
+  <meta property="og:title" content="MusicStart — 必要な瞬間に、音を。">
+  <meta property="og:description" content="式典・イベントのためのサウンドプレイヤー。12個の音源を、迷わず再生。">
+  <meta property="og:url" content="https://rainbow-juice.github.io/musicstart/">
+  <meta property="og:image" content="https://rainbow-juice.github.io/musicstart/assets/icon.png">
+  <meta name="twitter:card" content="summary">
+  <title>MusicStart — 必要な瞬間に、音を。 | Rainbow Juice</title>
+  <style>
+    :root { --navy: #0b1830; --navy-2: #122c51; --blue: #8bd9f5; --orange: #ffbd79; --ink: #142438; --muted: #586777; --line: #dfe7ed; --soft: #f5f9fc; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; color: var(--ink); background: #fff; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Hiragino Sans", "Yu Gothic", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #1599d3; outline-offset: 4px; }
+    .skip { position: fixed; z-index: 100; top: 8px; left: 8px; transform: translateY(-150%); background: #fff; color: var(--navy); padding: 10px 14px; border-radius: 8px; }
+    .skip:focus { transform: none; }
+    .wrap { width: min(1100px, calc(100% - 40px)); margin: auto; }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 750; white-space: nowrap; }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px; }
+    .nav-links a { text-decoration: none; color: #34475a; }
+    .nav-links a:hover, .text-link:hover { text-decoration: underline; }
+    .hero { overflow: hidden; color: #fff; background: radial-gradient(circle at 82% 8%, rgba(80,176,225,.22), transparent 32%), linear-gradient(145deg, #0b1830, #183960 85%); }
+    .hero-inner { padding: 96px 0 80px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
+    .eyebrow { margin: 0 0 15px; color: var(--blue); font-size: 14px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 22px; font-size: clamp(48px, 5.5vw, 76px); line-height: 1.06; letter-spacing: -.06em; }
+    .hero-copy { max-width: 550px; margin-bottom: 30px; color: #d5e7f5; font-size: clamp(18px, 1.9vw, 22px); line-height: 1.7; }
+    .badge { display: inline-flex; margin-bottom: 24px; padding: 7px 12px; border: 1px solid rgba(139,217,245,.45); border-radius: 99px; color: #d3f2ff; font-size: 13px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 99px; text-decoration: none; font-weight: 700; }
+    .button-primary { color: var(--navy); background: #b7ecff; }
+    .button-primary:hover { background: #d3f5ff; }
+    .button-ghost { color: #fff; border: 1px solid #7c9ab5; }
+    .button-ghost:hover { background: rgba(255,255,255,.1); }
+    .hero-visual { min-width: 0; }
+    .screen { margin: 0; padding: 12px; background: #07101e; border: 1px solid rgba(255,255,255,.22); border-radius: 24px; box-shadow: 0 26px 58px rgba(0,0,0,.3); }
+    .screen img { display: block; width: 100%; height: auto; border-radius: 13px; }
+    .screen figcaption { padding: 12px 4px 1px; color: #c3d5e4; font-size: 12px; }
+    .section { padding: 88px 0; }
+    .section-soft { background: var(--soft); }
+    .section h2 { margin-bottom: 14px; font-size: clamp(34px, 4vw, 52px); letter-spacing: -.045em; line-height: 1.16; }
+    .lead { max-width: 700px; color: var(--muted); font-size: 18px; line-height: 1.75; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+    .feature { padding: 28px; border: 1px solid var(--line); border-radius: 22px; background: #fff; }
+    .feature-num { color: #1177aa; font-size: 13px; font-weight: 800; }
+    .feature h3 { margin: 14px 0 10px; font-size: 21px; }
+    .feature p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
+    .screen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+    .screen-grid .screen { background: var(--navy); }
+    .screen-grid .screen figcaption { font-size: 14px; line-height: 1.5; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; list-style: none; padding: 0; counter-reset: step; }
+    .steps li { counter-increment: step; padding: 25px; border-radius: 19px; background: #fff; border: 1px solid var(--line); line-height: 1.7; }
+    .steps li::before { content: counter(step, decimal-leading-zero); display: block; margin-bottom: 11px; color: #0c80b4; font-size: 14px; font-weight: 800; }
+    .steps strong { display: block; font-size: 18px; margin-bottom: 7px; }
+    .steps span { color: var(--muted); }
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 31px; }
+    .plan { padding: 32px; border-radius: 22px; border: 1px solid var(--line); background: #fff; }
+    .plan.lite { border-color: #95cbe3; background: #eef9fd; }
+    .plan h3 { font-size: 28px; margin-bottom: 8px; }
+    .plan p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+    .plan strong { display: block; margin-bottom: 13px; color: var(--navy-2); font-size: 18px; }
+    .fine { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .support { padding: 48px; border-radius: 26px; color: #fff; background: var(--navy); }
+    .support h2 { max-width: 670px; }
+    .support p { max-width: 670px; color: #d6e5f0; line-height: 1.75; }
+    .support .text-link { color: #b7ecff; }
+    footer { padding: 36px 0; background: #eef3f7; color: #536271; font-size: 13px; }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .footer-links a { text-decoration: none; }
+    @media (max-width: 830px) { .hero-inner { grid-template-columns: 1fr; padding: 72px 0; } .hero-visual { max-width: 720px; } .feature-grid, .steps { grid-template-columns: 1fr; } }
+    @media (max-width: 650px) { .wrap { width: min(100% - 32px, 1100px); } .nav { align-items: flex-start; padding: 13px 0; } .nav-links { gap: 12px; } .nav-links a { font-size: 12px; } .section { padding: 66px 0; } .screen-grid, .plans { grid-template-columns: 1fr; } .support { padding: 30px 25px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="メインナビゲーション">
+      <a class="brand" href="/" aria-label="Rainbow Juice ホームへ"><img src="assets/icon.png" alt=""><span>MusicStart</span></a>
+      <div class="nav-links"><a href="#features">特徴</a><a href="#screens">画面</a><a href="#usage">使い方</a><a href="#plans">プラン</a><a href="#support">サポート</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">Sound player for your moments</p>
+          <span class="badge">iPhone・iPad 対応 / 公開準備中</span>
+          <h1>必要な瞬間に、<br>音を。</h1>
+          <p class="hero-copy">式典やイベントで使う音源を、迷わずすぐに再生。大きなボタンと手元の音量調整で、本番の操作をシンプルにします。</p>
+          <div class="actions"><a class="button button-primary" href="#usage">使い方を見る</a><a class="button button-ghost" href="#screens">画面を見る</a></div>
+        </div>
+        <div class="hero-visual">
+          <figure class="screen"><img src="assets/a-screen.jpg" alt="MusicStart A画面。12個の再生スロットと左側の音量コントロール" width="1600" height="738"><figcaption>A画面：本番で押しやすい12個のスタートボタン。画面は開発中のものです。</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <p class="eyebrow">Features</p><h2>本番の流れを、止めない。</h2>
+        <p class="lead">1枚のシートに12個の音源を登録。曲名を見てタップするだけで再生できます。再生中でも音量を変えられます。</p>
+        <div class="feature-grid">
+          <article class="feature"><span class="feature-num">01 / PLAY</span><h3>12個の音をすぐ再生</h3><p>音源を事前に読み込み、スロットから再生します。STOP・PAUSE、ループを音源ごとに設定できます。</p></article>
+          <article class="feature"><span class="feature-num">02 / MIX</span><h3>音量を手元で調整</h3><p>マスター音量に加え、B画面では各スロットの音量を調整。ミュートと5秒フェードアウトにも対応します。</p></article>
+          <article class="feature"><span class="feature-num">03 / CONTROL</span><h3>鳴っている音を把握</h3><p>再生中の音を一覧で確認できます。効果音を重ねるスロットも個別に設定でき、全停止は長押し操作です。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="screens">
+      <div class="wrap">
+        <p class="eyebrow">Two screens</p><h2>再生と調整を、使い分ける。</h2>
+        <p class="lead">A画面は本番での再生、B画面は各音源の音量調整に。画面を切り替えても、鳴っている音は続きます。</p>
+        <div class="screen-grid">
+          <figure class="screen"><img src="assets/a-screen.jpg" alt="MusicStart A画面の12個の大きなスタートボタン" width="1600" height="738"><figcaption><strong>A画面</strong> — 大きなスタートボタンで再生。残り時間も確認できます。</figcaption></figure>
+          <figure class="screen"><img src="assets/b-screen.jpg" alt="MusicStart B画面のスロット別フェーダー" width="1600" height="738"><figcaption><strong>B画面</strong> — 12スロットのフェーダーで、再生中も個別音量を調整できます。</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="usage">
+      <div class="wrap">
+        <p class="eyebrow">Getting started</p><h2>使い方は、3ステップ。</h2>
+        <p class="lead">音源はアプリに同梱されていません。ご自身が利用できるMP3・WAV・M4Aファイルを「ファイル」アプリから選んでください。</p>
+        <ol class="steps">
+          <li><strong>音源を登録</strong><span>歯車の「設定」を開き、スロットを選択して「インポート」。ファイルから音源を選びます。</span></li>
+          <li><strong>A画面で再生</strong><span>登録したスロットをタップして再生。もう一度押すと停止または一時停止します。</span></li>
+          <li><strong>B画面で調整</strong><span>「切替」でB画面へ。音を聴きながら個別フェーダーを動かせます。</span></li>
+        </ol>
+        <p class="fine">iPhoneは横向きで使用します。iPadは縦向き・横向きに対応します。</p>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="plans">
+      <div class="wrap">
+        <p class="eyebrow">Plans</p><h2>まずは1シートから。</h2>
+        <p class="lead">広告は表示しません。必要なシートが増えたら、アプリ内でLiteへアップグレードできます。</p>
+        <div class="plans">
+          <div class="plan"><h3>Free</h3><strong>1シート / 12スロット</strong><p>A・B画面、音量調整、ループ、フェードアウトなどを利用できます。</p></div>
+          <div class="plan lite"><h3>Lite</h3><strong>最大5シート / 60スロット</strong><p>買い切りのApp内課金でシート追加の上限を拡張。必要な枚数だけ「シート管理」から追加できます。</p></div>
+        </div>
+        <p class="fine">購入すると5枚が自動生成されるわけではありません。Liteの価格はアプリ内の購入画面でご確認ください。シート切替中も、再生中の音は続きます。</p>
+      </div>
+    </section>
+
+    <section class="section" id="support">
+      <div class="wrap">
+        <div class="support">
+          <p class="eyebrow">Support</p><h2>使い方や不具合のご相談</h2>
+          <p>お問い合わせの際は「MusicStart」と、端末の種類・操作した内容をお知らせください。</p>
+          <div class="actions"><a class="button button-primary" href="mailto:rainbow.devlog@gmail.com?subject=MusicStart%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールで問い合わせる</a><a class="button button-ghost" href="https://rainbowdevlog.hatenablog.com/entry/2026/11/01/231036" target="_blank" rel="noopener noreferrer">プライバシーポリシー ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© <span id="year">2026</span> Rainbow Juice. All rights reserved.</span><div class="footer-links"><a href="/">Rainbow Juice トップ</a><a href="https://rainbowdevlog.hatenablog.com/entry/2026/11/01/231036" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a><a href="mailto:rainbow.devlog@gmail.com">お問い合わせ</a></div></div></footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
