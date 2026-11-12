@@ -1,173 +1,531 @@
 <!DOCTYPE html>
+<!--
+- app-ads.txt はこのHTMLに含めず、現在と同じくWebサイトのルート直下に別ファイルとして残してください。
+- 既存のApp Store、使い方、プライバシーポリシー、お問い合わせ先のURLは原則そのまま引き継いでいます。
+-->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b1830">
-  <meta name="description" content="MusicStartは式典・イベントの音源を必要な瞬間に再生するiPhone・iPad向けサウンドプレイヤー。A画面の大きなボタン、B画面の個別音量調整、シート管理に対応します。">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Rainbow Juiceは、毎日の小さな不便をやさしく解決するiPhoneアプリをつくる個人開発ブランドです。アプリ一覧、使い方、サポートはこちら。">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="Rainbow Juice">
-  <meta property="og:title" content="MusicStart — 必要な瞬間に、音を。">
-  <meta property="og:description" content="式典・イベントのためのサウンドプレイヤー。12個の音源を、迷わず再生。">
-  <meta property="og:url" content="https://rainbow-juice.github.io/musicstart/">
-  <meta property="og:image" content="https://rainbow-juice.github.io/musicstart/assets/icon.png">
-  <meta name="twitter:card" content="summary">
-  <title>MusicStart — 必要な瞬間に、音を。 | Rainbow Juice</title>
+  <meta property="og:title" content="Rainbow Juice — 毎日に、ちいさな便利を。">
+  <meta property="og:description" content="ペットの健康管理から、暮らし・学び・仕事まで。毎日を少し軽くするiPhoneアプリをお届けします。">
+  <meta property="og:url" content="https://rainbow-juice.github.io/">
+  <meta property="og:image" content="https://rainbow-juice.github.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rainbow Juice — 毎日に、ちいさな便利を。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rainbow Juice — 毎日に、ちいさな便利を。">
+  <meta name="twitter:description" content="毎日を少し軽くする、Rainbow JuiceのiPhoneアプリ。">
+  <meta name="twitter:image" content="https://rainbow-juice.github.io/og-image.png">
+  <title>Rainbow Juice — 毎日に、ちいさな便利を。</title>
   <style>
-    :root { --navy: #0b1830; --navy-2: #122c51; --blue: #8bd9f5; --orange: #ffbd79; --ink: #142438; --muted: #586777; --line: #dfe7ed; --soft: #f5f9fc; }
+    :root {
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0, 0, 0, .08);
+      --blue: #0071e3;
+      --blue-hover: #0077ed;
+      --surface: #fff;
+      --soft: #f5f5f7;
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, .08);
+    }
+
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-    body { margin: 0; color: var(--ink); background: #fff; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Hiragino Sans", "Yu Gothic", sans-serif; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
     a { color: inherit; }
-    :focus-visible { outline: 3px solid #1599d3; outline-offset: 4px; }
-    .skip { position: fixed; z-index: 100; top: 8px; left: 8px; transform: translateY(-150%); background: #fff; color: var(--navy); padding: 10px 14px; border-radius: 8px; }
-    .skip:focus { transform: none; }
-    .wrap { width: min(1100px, calc(100% - 40px)); margin: auto; }
-    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
-    .nav { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 750; white-space: nowrap; }
-    .brand img { width: 30px; height: 30px; border-radius: 8px; }
-    .nav-links { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px; }
-    .nav-links a { text-decoration: none; color: #34475a; }
-    .nav-links a:hover, .text-link:hover { text-decoration: underline; }
-    .hero { overflow: hidden; color: #fff; background: radial-gradient(circle at 82% 8%, rgba(80,176,225,.22), transparent 32%), linear-gradient(145deg, #0b1830, #183960 85%); }
-    .hero-inner { padding: 96px 0 80px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
-    .eyebrow { margin: 0 0 15px; color: var(--blue); font-size: 14px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { margin-bottom: 22px; font-size: clamp(48px, 5.5vw, 76px); line-height: 1.06; letter-spacing: -.06em; }
-    .hero-copy { max-width: 550px; margin-bottom: 30px; color: #d5e7f5; font-size: clamp(18px, 1.9vw, 22px); line-height: 1.7; }
-    .badge { display: inline-flex; margin-bottom: 24px; padding: 7px 12px; border: 1px solid rgba(139,217,245,.45); border-radius: 99px; color: #d3f2ff; font-size: 13px; }
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border-radius: 99px; text-decoration: none; font-weight: 700; }
-    .button-primary { color: var(--navy); background: #b7ecff; }
-    .button-primary:hover { background: #d3f5ff; }
-    .button-ghost { color: #fff; border: 1px solid #7c9ab5; }
-    .button-ghost:hover { background: rgba(255,255,255,.1); }
-    .hero-visual { min-width: 0; }
-    .screen { margin: 0; padding: 12px; background: #07101e; border: 1px solid rgba(255,255,255,.22); border-radius: 24px; box-shadow: 0 26px 58px rgba(0,0,0,.3); }
-    .screen img { display: block; width: 100%; height: auto; border-radius: 13px; }
-    .screen figcaption { padding: 12px 4px 1px; color: #c3d5e4; font-size: 12px; }
-    .section { padding: 88px 0; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid rgba(0, 113, 227, .36); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 100;
+      padding: 10px 14px; border-radius: 999px; background: #111; color: #fff;
+      transform: translateY(-150%); transition: transform .2s; text-decoration: none;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+      background: rgba(255, 255, 255, .82);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    .nav {
+      width: min(1120px, calc(100% - 40px)); height: 58px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 15px; font-weight: 700; letter-spacing: -.02em; }
+    .brand-mark { width: 29px; height: 29px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0, 50, 40, .2); }
+    .nav-links { display: flex; align-items: center; gap: 26px; }
+    .nav-links a { color: #424245; font-size: 13px; text-decoration: none; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links .nav-cta { color: #fff; background: var(--blue); padding: 8px 15px; border-radius: 999px; }
+    .nav-links .nav-cta:hover { color: #fff; background: var(--blue-hover); }
+
+    .hero {
+      position: relative; overflow: hidden; min-height: 730px;
+      display: grid; place-items: center; padding: 110px 20px 80px;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(255, 55, 95, .14), transparent 30%),
+        radial-gradient(circle at 82% 16%, rgba(10, 132, 255, .16), transparent 31%),
+        radial-gradient(circle at 50% 88%, rgba(191, 90, 242, .13), transparent 34%),
+        linear-gradient(180deg, #fff 0%, #fafafa 72%, #f5f5f7 100%);
+    }
+    .hero::before {
+      content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      background: conic-gradient(from 210deg, #ff375f, #ff9f0a, #ffd60a, #30d158, #64d2ff, #0a84ff, #bf5af2, #ff375f);
+      filter: blur(80px); opacity: .08; transform: translateY(170px);
+    }
+    .hero-inner { position: relative; z-index: 1; width: min(940px, 100%); text-align: center; }
+    .eyebrow { margin: 0 0 18px; color: var(--blue); font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+    .hero h1 {
+      margin: 0 auto; max-width: 900px;
+      font-size: clamp(54px, 8.2vw, 104px); line-height: .98; letter-spacing: -.072em;
+    }
+    .gradient-text {
+      display: block; padding-bottom: .1em;
+      background: linear-gradient(100deg, #ff375f 5%, #ff9f0a 30%, #0a84ff 65%, #bf5af2 94%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-copy { max-width: 690px; margin: 30px auto 0; color: var(--muted); font-size: clamp(19px, 2.2vw, 24px); line-height: 1.6; letter-spacing: -.025em; }
+    .hero-actions { margin-top: 34px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      min-height: 46px; padding: 0 21px; border: 1px solid transparent; border-radius: 999px;
+      font-size: 16px; text-decoration: none; transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: var(--blue); color: #fff; box-shadow: 0 8px 22px rgba(0, 113, 227, .18); }
+    .button-primary:hover { background: var(--blue-hover); }
+    .button-secondary { border-color: rgba(0, 113, 227, .35); color: var(--blue); background: rgba(255,255,255,.68); }
+    .button-secondary:hover { background: rgba(0, 113, 227, .06); }
+    .arrow { font-size: 20px; line-height: 1; transform: translateY(-1px); }
+
+    .section { padding: 110px 20px; }
     .section-soft { background: var(--soft); }
-    .section h2 { margin-bottom: 14px; font-size: clamp(34px, 4vw, 52px); letter-spacing: -.045em; line-height: 1.16; }
-    .lead { max-width: 700px; color: var(--muted); font-size: 18px; line-height: 1.75; }
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
-    .feature { padding: 28px; border: 1px solid var(--line); border-radius: 22px; background: #fff; }
-    .feature-num { color: #1177aa; font-size: 13px; font-weight: 800; }
-    .feature h3 { margin: 14px 0 10px; font-size: 21px; }
-    .feature p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
-    .screen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
-    .screen-grid .screen { background: var(--navy); }
-    .screen-grid .screen figcaption { font-size: 14px; line-height: 1.5; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; list-style: none; padding: 0; counter-reset: step; }
-    .steps li { counter-increment: step; padding: 25px; border-radius: 19px; background: #fff; border: 1px solid var(--line); line-height: 1.7; }
-    .steps li::before { content: counter(step, decimal-leading-zero); display: block; margin-bottom: 11px; color: #0c80b4; font-size: 14px; font-weight: 800; }
-    .steps strong { display: block; font-size: 18px; margin-bottom: 7px; }
-    .steps span { color: var(--muted); }
-    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 31px; }
-    .plan { padding: 32px; border-radius: 22px; border: 1px solid var(--line); background: #fff; }
-    .plan.lite { border-color: #95cbe3; background: #eef9fd; }
-    .plan h3 { font-size: 28px; margin-bottom: 8px; }
-    .plan p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
-    .plan strong { display: block; margin-bottom: 13px; color: var(--navy-2); font-size: 18px; }
-    .fine { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .support { padding: 48px; border-radius: 26px; color: #fff; background: var(--navy); }
-    .support h2 { max-width: 670px; }
-    .support p { max-width: 670px; color: #d6e5f0; line-height: 1.75; }
-    .support .text-link { color: #b7ecff; }
-    footer { padding: 36px 0; background: #eef3f7; color: #536271; font-size: 13px; }
-    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .section-inner { width: min(1120px, 100%); margin: auto; }
+    .section-head { max-width: 760px; margin-bottom: 46px; }
+    .section-kicker { margin: 0 0 10px; color: var(--blue); font-size: 16px; font-weight: 700; }
+    .section h2 { margin: 0; font-size: clamp(38px, 5vw, 64px); line-height: 1.05; letter-spacing: -.055em; }
+    .section-lead { margin: 20px 0 0; color: var(--muted); font-size: 19px; line-height: 1.7; letter-spacing: -.018em; }
+
+    .feature-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; }
+    .feature-card {
+      position: relative; min-height: 570px; overflow: hidden; padding: 48px;
+      border-radius: var(--radius-xl); background: #fff; box-shadow: var(--shadow);
+    }
+    .feature-card.secondary { min-height: 276px; }
+    .feature-stack { display: grid; gap: 18px; }
+    .feature-label { margin: 0 0 8px; font-size: 15px; font-weight: 700; }
+    .feature-card h3 { max-width: 540px; margin: 0; font-size: clamp(30px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -.045em; }
+    .feature-card p { max-width: 530px; margin: 17px 0 0; color: var(--muted); font-size: 17px; line-height: 1.65; }
+    .feature-link { display: inline-flex; margin-top: 22px; color: var(--blue); font-size: 17px; text-decoration: none; }
+    .feature-link:hover { text-decoration: underline; }
+    .pet-visual { position: absolute; left: 44px; right: 44px; bottom: -30px; height: 260px; }
+    .pet-panel { position: absolute; inset: 0; border-radius: 32px 32px 0 0; background: linear-gradient(145deg, #fff8eb, #ffe7c2); border: 1px solid rgba(255,149,0,.15); }
+    .pet-ring { position: absolute; left: 50%; top: 42px; width: 132px; height: 132px; transform: translateX(-50%); border-radius: 50%; background: conic-gradient(#ff9500 0 82%, rgba(255,149,0,.15) 82%); box-shadow: inset 0 0 0 18px #fff7ea; }
+    .pet-ring::after { content: "82%"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 25px; font-weight: 750; }
+    .pet-dots { position: absolute; left: 50%; bottom: 35px; display: flex; gap: 13px; transform: translateX(-50%); }
+    .pet-dots span { width: 48px; height: 8px; border-radius: 9px; background: rgba(255,149,0,.18); }
+    .pet-dots span:first-child { background: #ff9500; }
+    .feature-card.hobby { background: linear-gradient(145deg, #fff8ec, #fff); }
+    .feature-card.focus { color: #fff; background: linear-gradient(145deg, #1d1d1f, #3a3a3d); }
+    .feature-card.focus p { color: rgba(255,255,255,.65); }
+    .feature-card.focus .feature-link { color: #64d2ff; }
+    .mini-graphic { position: absolute; right: 34px; bottom: 26px; display: flex; gap: 8px; align-items: end; opacity: .85; }
+    .mini-graphic span { width: 16px; border-radius: 8px; background: #0a84ff; }
+    .mini-graphic span:nth-child(1) { height: 36px; opacity: .4; }
+    .mini-graphic span:nth-child(2) { height: 62px; opacity: .7; }
+    .mini-graphic span:nth-child(3) { height: 94px; }
+    .featured-app-pair { position: absolute; right: 34px; bottom: 26px; display: flex; }
+    .featured-app-pair img {
+      width: 76px; height: 76px; object-fit: cover; border-radius: 18px;
+      border: 4px solid #fff; box-shadow: 0 12px 28px rgba(0,0,0,.13);
+    }
+    .featured-app-pair img + img { margin-left: -18px; transform: rotate(5deg); }
+    .featured-app-pair img:nth-child(3) { transform: rotate(-4deg); }
+
+    .apps-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .app-card {
+      --accent: #0a84ff; --tint: #eef7ff;
+      display: flex; flex-direction: column; min-height: 355px; padding: 28px;
+      border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff;
+      box-shadow: 0 12px 36px rgba(0,0,0,.045); transition: transform .25s, box-shadow .25s;
+    }
+    .app-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,.085); }
+    .app-icon {
+      width: 78px; height: 78px; margin-bottom: 25px; display: block; object-fit: cover;
+      border-radius: 20px; background: var(--accent); box-shadow: inset 0 0 0 1px rgba(255,255,255,.28), 0 12px 24px color-mix(in srgb, var(--accent) 24%, transparent);
+    }
+    .app-card h3 { margin: 0; font-size: 23px; line-height: 1.2; letter-spacing: -.035em; }
+    .app-card h3 small { font-size: .58em; font-weight: 600; color: var(--muted); letter-spacing: -.01em; white-space: nowrap; }
+    .app-summary { flex: 1; margin: 11px 0 24px; color: var(--muted); font-size: 15px; line-height: 1.65; }
+    .app-actions { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding-top: 18px; border-top: 1px solid var(--line); }
+    .app-actions a, .app-actions span { font-size: 14px; text-decoration: none; }
+    .app-actions a { color: var(--blue); }
+    .app-actions a:hover { text-decoration: underline; }
+    .store { font-weight: 700; }
+    .soon { color: var(--muted); font-weight: 650; }
+    .neko { --accent: #ff9500; }
+    .inu { --accent: #ff6b81; }
+    .starbucks { --accent: #007647; }
+    .training { --accent: #00a9c6; }
+    .attendance { --accent: #3d5366; }
+    .hardoff { --accent: #003da5; }
+    .bus { --accent: #e12a20; }
+    .ds { --accent: #43b97f; }
+    .task { --accent: #4a90e2; }
+    .sake { --accent: #1b3b2b; }
+    .musicstart { --accent: #122c51; }
+
+    .philosophy { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+    .philosophy h2 { position: sticky; top: 105px; }
+    .principles { display: grid; gap: 14px; }
+    .principle { padding: 28px 30px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; }
+    .principle-number { color: var(--blue); font-size: 13px; font-weight: 750; }
+    .principle h3 { margin: 8px 0 7px; font-size: 22px; letter-spacing: -.03em; }
+    .principle p { margin: 0; color: var(--muted); line-height: 1.65; }
+
+    .support-card {
+      padding: 72px 50px; text-align: center; border-radius: var(--radius-xl); color: #fff;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(100,210,255,.35), transparent 35%),
+        radial-gradient(circle at 90% 100%, rgba(191,90,242,.3), transparent 36%),
+        #1d1d1f;
+      box-shadow: var(--shadow);
+    }
+    .support-card h2 { max-width: 780px; margin-inline: auto; }
+    .support-card p { max-width: 650px; margin: 20px auto 0; color: rgba(255,255,255,.68); font-size: 18px; line-height: 1.7; }
+    .support-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .support-actions .button-primary { background: #fff; color: #111; }
+    .support-actions .button-primary:hover { background: #f2f2f2; }
+    .support-actions .button-secondary { border-color: rgba(255,255,255,.3); color: #fff; background: transparent; }
+    .support-actions .button-secondary:hover { background: rgba(255,255,255,.08); }
+
+    .site-footer { padding: 38px 20px 44px; background: var(--soft); }
+    .footer-inner { width: min(1120px, 100%); margin: auto; display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
     .footer-links a { text-decoration: none; }
-    @media (max-width: 830px) { .hero-inner { grid-template-columns: 1fr; padding: 72px 0; } .hero-visual { max-width: 720px; } .feature-grid, .steps { grid-template-columns: 1fr; } }
-    @media (max-width: 650px) { .wrap { width: min(100% - 32px, 1100px); } .nav { align-items: flex-start; padding: 13px 0; } .nav-links { gap: 12px; } .nav-links a { font-size: 12px; } .section { padding: 66px 0; } .screen-grid, .plans { grid-template-columns: 1fr; } .support { padding: 30px 25px; } }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .footer-links a:hover { color: var(--ink); text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .feature-grid, .philosophy { grid-template-columns: 1fr; }
+      .feature-card { min-height: 510px; }
+      .philosophy h2 { position: static; }
+      .apps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .nav { width: min(100% - 28px, 1120px); }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { min-height: 650px; padding-top: 84px; }
+      .hero h1 { font-size: clamp(50px, 15vw, 74px); }
+      .hero-copy { font-size: 18px; }
+      .section { padding: 78px 18px; }
+      .section-head { margin-bottom: 34px; }
+      .feature-card { min-height: 480px; padding: 32px 26px; border-radius: 28px; }
+      .feature-card.secondary { min-height: 260px; }
+      .pet-visual { left: 24px; right: 24px; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .app-card { min-height: 330px; }
+      .support-card { padding: 58px 24px; border-radius: 28px; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
-  <a class="skip" href="#main">本文へ移動</a>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
   <header class="site-header">
-    <nav class="nav wrap" aria-label="メインナビゲーション">
-      <a class="brand" href="/" aria-label="Rainbow Juice ホームへ"><img src="assets/icon.png" alt=""><span>MusicStart</span></a>
-      <div class="nav-links"><a href="#features">特徴</a><a href="#screens">画面</a><a href="#usage">使い方</a><a href="#plans">プラン</a><a href="#support">サポート</a></div>
+    <nav class="nav" aria-label="メインナビゲーション">
+      <a class="brand" href="#top" aria-label="Rainbow Juice ホーム">
+        <img class="brand-mark" src="assets/rainbow-juice.png" alt="">
+        <span>Rainbow Juice</span>
+      </a>
+      <div class="nav-links">
+        <a href="#featured">おすすめ</a>
+        <a href="#apps">アプリ一覧</a>
+        <a href="#about">私たちについて</a>
+        <a class="nav-cta" href="#support">サポート</a>
+      </div>
     </nav>
   </header>
+
   <main id="main">
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <div>
-          <p class="eyebrow">Sound player for your moments</p>
-          <span class="badge">iPhone・iPad 対応 / App Storeで公開中</span>
-          <h1>必要な瞬間に、<br>音を。</h1>
-          <p class="hero-copy">式典やイベントで使う音源を、迷わずすぐに再生。大きなボタンと手元の音量調整で、本番の操作をシンプルにします。</p>
-          <div class="actions"><a class="button button-primary" href="https://apps.apple.com/jp/app/musicstart/id6829457904" target="_blank" rel="noopener noreferrer">App Storeで見る ↗</a><a class="button button-ghost" href="#usage">使い方を見る</a><a class="button button-ghost" href="#screens">画面を見る</a></div>
-        </div>
-        <div class="hero-visual">
-          <figure class="screen"><img src="assets/a-screen.jpg" alt="MusicStart A画面。12個の再生スロットと左側の音量コントロール" width="1600" height="738"><figcaption>A画面：本番で押しやすい12個のスタートボタン。画面はアプリの操作イメージです。</figcaption></figure>
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="eyebrow">Apps by Rainbow Juice</p>
+        <h1>毎日に、<span class="gradient-text">ちいさな便利を。</span></h1>
+        <p class="hero-copy">ペットの健康管理から、暮らし・学び・仕事まで。<br>「あったらいいな」を、シンプルなiPhoneアプリにしています。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#apps">アプリを見つける <span class="arrow" aria-hidden="true">›</span></a>
+          <a class="button button-secondary" href="#about">Rainbow Juiceについて</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="features">
-      <div class="wrap">
-        <p class="eyebrow">Features</p><h2>本番の流れを、止めない。</h2>
-        <p class="lead">1枚のシートに12個の音源を登録。曲名を見てタップするだけで再生できます。再生中でも音量を変えられます。</p>
+    <section class="section section-soft" id="featured">
+      <div class="section-inner">
+        <div class="section-head">
+          <p class="section-kicker">Featured</p>
+          <h2>暮らしに寄り添う、<br>気の利いたアプリ。</h2>
+          <p class="section-lead">必要な機能を、必要なだけ。迷わず使えて、毎日続けやすい体験を目指しています。</p>
+        </div>
         <div class="feature-grid">
-          <article class="feature"><span class="feature-num">01 / PLAY</span><h3>12個の音をすぐ再生</h3><p>音源を事前に読み込み、スロットから再生します。STOP・PAUSE、ループを音源ごとに設定できます。</p></article>
-          <article class="feature"><span class="feature-num">02 / MIX</span><h3>音量を手元で調整</h3><p>マスター音量に加え、B画面では各スロットの音量を調整。ミュートと5秒フェードアウトにも対応します。</p></article>
-          <article class="feature"><span class="feature-num">03 / CONTROL</span><h3>鳴っている音を把握</h3><p>再生中の音を一覧で確認できます。効果音を重ねるスロットも個別に設定でき、全停止は長押し操作です。</p></article>
+          <article class="feature-card">
+            <p class="feature-label">ねころぐ・いぬろぐ</p>
+            <h3>大切な家族の「いつも」を、記録する。</h3>
+            <p>日々の健康や様子を残して、変化に気づくきっかけに。猫と犬、それぞれの暮らしに寄り添います。</p>
+            <a class="feature-link" href="#pets">ペットアプリを見る&nbsp;›</a>
+            <div class="pet-visual" aria-hidden="true">
+              <div class="pet-panel"></div>
+              <div class="pet-ring"></div>
+              <div class="pet-dots"><span></span><span></span><span></span></div>
+            </div>
+          </article>
+          <div class="feature-stack">
+            <article class="feature-card secondary hobby">
+              <p class="feature-label">趣味をもっと楽しく</p>
+              <h3>趣味に特化したアプリを探す。</h3>
+              <p>日本酒の記録、スタバのMyStorePassport管理、ハドフのチェックインをもっと便利に。</p>
+              <a class="feature-link" href="#hobby">趣味アプリを見る&nbsp;›</a>
+              <div class="featured-app-pair" aria-hidden="true">
+                <img src="assets/sakelog.png" alt="">
+                <img src="assets/msp-support.png" alt="">
+                <img src="assets/hardoff-checker.png" alt="">
+              </div>
+            </article>
+            <article class="feature-card secondary focus">
+              <p class="feature-label">記録・管理</p>
+              <h3>続けたいことに、集中できる。</h3>
+              <p>タスク、トレーニング、出欠席。記録の手間を減らします。</p>
+              <a class="feature-link" href="#apps">管理アプリを見る&nbsp;›</a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="screens">
-      <div class="wrap">
-        <p class="eyebrow">Two screens</p><h2>再生と調整を、使い分ける。</h2>
-        <p class="lead">A画面は本番での再生、B画面は各音源の音量調整に。画面を切り替えても、鳴っている音は続きます。</p>
-        <div class="screen-grid">
-          <figure class="screen"><img src="assets/a-screen.jpg" alt="MusicStart A画面の12個の大きなスタートボタン" width="1600" height="738"><figcaption><strong>A画面</strong> — 大きなスタートボタンで再生。残り時間も確認できます。</figcaption></figure>
-          <figure class="screen"><img src="assets/b-screen.jpg" alt="MusicStart B画面のスロット別フェーダー" width="1600" height="738"><figcaption><strong>B画面</strong> — 12スロットのフェーダーで、再生中も個別音量を調整できます。</figcaption></figure>
+    <section class="section" id="apps">
+      <div class="section-inner">
+        <div class="section-head">
+          <p class="section-kicker">All Apps</p>
+          <h2>あなたの毎日に、<br>ぴったりの一本を。</h2>
+          <p class="section-lead">App Storeで公開中のアプリと、使い方・プライバシーポリシーをご案内します。</p>
+        </div>
+
+        <div class="apps-grid">
+          <article class="app-card musicstart">
+            <img class="app-icon" src="musicstart/assets/icon.png" alt="MusicStartのアプリアイコン">
+            <h3>MusicStart</h3>
+            <p class="app-summary">式典やイベントの音源を、必要な瞬間に再生。12個のスタートボタン、個別音量調整、5秒フェードアウトを備えたサウンドプレイヤーです。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/musicstart/id6829457904" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="musicstart/">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/11/02/183453" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/11/01/231036" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card neko" id="pets">
+            <img class="app-icon" src="assets/nekolog.png" alt="ねころぐのアプリアイコン">
+            <h3>ねころぐ 〜家族の記録〜</h3>
+            <p class="app-summary">愛猫の食事・トイレ・通院履歴などを猫ごとに記録。iCloudで複数デバイス間の共有にも対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6757979405" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="nekolog.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230737" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/19/230751" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card inu">
+            <img class="app-icon" src="assets/inulog.png" alt="いぬろぐのアプリアイコン">
+            <h3>いぬろぐ 〜家族の記録〜</h3>
+            <p class="app-summary">愛犬のグルーミング・食事・トイレ・通院履歴などを記録。体重グラフ、予定管理、レポート出力にも対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6800168572" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="inulog.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/08/11/142308" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/08/11/142413" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card sake" id="hobby">
+            <img class="app-icon" src="assets/sakelog.png" alt="さけろぐのアプリアイコン">
+            <h3>さけろぐ</h3>
+            <p class="app-summary">ラベルを撮って、飲んだ日本酒を手軽に記録。銘柄情報の補完、日本地図のコレクション、6軸の味わいによる好み分析に対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/app/%E3%81%95%E3%81%91%E3%82%8D%E3%81%90/id6808960248" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="sakelog.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/09/06/232229" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/09/05/211440" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card starbucks">
+            <img class="app-icon" src="assets/msp-support.png" alt="スタバMSPサポートのアプリアイコン">
+            <h3>スタバMSPサポート</h3>
+            <p class="app-summary">スタバのMyStorePassportを記録する非公式アプリ。訪問状況の検索、店舗メモ、ルート検索、地図連携に対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6753171401" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="starbucks-msp.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/021950" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2025/09/21/203609" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card training">
+            <img class="app-icon" src="assets/training.png" alt="トレーニングやった？のアプリアイコン">
+            <h3>トレーニングやった？</h3>
+            <p class="app-summary">実施回数を週・月別グラフで可視化。目標設定と自由なメッセージ通知で習慣化を支えます。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6758566707" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="training.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/02/01/172454" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/02/01/172508" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card attendance">
+            <img class="app-icon" src="assets/attendance.png" alt="出席簿のアプリアイコン">
+            <h3>出席簿</h3>
+            <p class="app-summary">授業の出欠をタップで入力。提出用の出席簿原本や出席率集計表をPDF出力できます。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6759220693" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="attendance.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/02/24/232721" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/02/24/232411" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card hardoff">
+            <img class="app-icon" src="assets/hardoff-checker.png" alt="ハドフチェッカーのアプリアイコン">
+            <h3>ハドフチェッカー</h3>
+            <p class="app-summary">全国約1,800店舗のハドフ巡回を支援。近隣検索、訪問記録、地図アプリでの経路検索ができます。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/ja/app/id6762376536" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="hardoff-checker.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/04/16/234544" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/04/16/223819" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card bus">
+            <img class="app-icon" src="assets/kan-bus-time.png" alt="関バス時刻表のアプリアイコン">
+            <h3>関バス時刻表</h3>
+            <p class="app-summary">関東自動車バスの時刻表を素早く確認できる非公式アプリ。区間登録とGPSによる最寄り停留所表示に対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6757474875" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="kanbus-time.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/07/231053" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/01/07/231431" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card ds">
+            <img class="app-icon" src="assets/ds-navi.png" alt="DSナビのアプリアイコン">
+            <h3>DSナビ <small lang="en">(DS Navigation)</small></h3>
+            <p class="app-summary">拠点から最大15か所を巡るルートを作成。店舗リストのCSV取込と外部地図アプリ連携に対応します。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6769220843" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="ds-navi.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/05/14/102826" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/05/14/103042" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
+
+          <article class="app-card task">
+            <img class="app-icon" src="assets/task-clear.png" alt="タスククリア Liteのアプリアイコン">
+            <h3>タスククリア Lite <small lang="en">(TaskClear Lite)</small></h3>
+            <p class="app-summary">チェックリスト、通知、カレンダーを備えたシンプルなタスク管理。「今日やる」項目だけを表示できます。</p>
+            <div class="app-actions">
+              <a class="store" href="https://apps.apple.com/jp/app/id6789929054" target="_blank" rel="noopener noreferrer">App Store&nbsp;↗</a>
+              <a href="taskclear-lite.html">詳細</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/07/11/234956" target="_blank" rel="noopener noreferrer">使い方</a>
+              <a href="https://rainbowdevlog.hatenablog.com/entry/2026/07/11/234754" target="_blank" rel="noopener noreferrer">プライバシー</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="usage">
-      <div class="wrap">
-        <p class="eyebrow">Getting started</p><h2>使い方は、3ステップ。</h2>
-        <p class="lead">音源はアプリに同梱されていません。ご自身が利用できるMP3・WAV・M4Aファイルを「ファイル」アプリから選んでください。</p>
-        <ol class="steps">
-          <li><strong>音源を登録</strong><span>歯車の「設定」を開き、スロットを選択して「インポート」。ファイルから音源を選びます。</span></li>
-          <li><strong>A画面で再生</strong><span>登録したスロットをタップして再生。もう一度押すと停止または一時停止します。</span></li>
-          <li><strong>B画面で調整</strong><span>「切替」でB画面へ。音を聴きながら個別フェーダーを動かせます。</span></li>
-        </ol>
-        <p class="fine">iPhoneは横向きで使用します。iPadは縦向き・横向きに対応します。</p>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="plans">
-      <div class="wrap">
-        <p class="eyebrow">Plans</p><h2>まずは1シートから。</h2>
-        <p class="lead">広告は表示しません。必要なシートが増えたら、アプリ内でLiteへアップグレードできます。</p>
-        <div class="plans">
-          <div class="plan"><h3>Free</h3><strong>1シート / 12スロット</strong><p>A・B画面、音量調整、ループ、フェードアウトなどを利用できます。</p></div>
-          <div class="plan lite"><h3>Lite</h3><strong>最大5シート / 60スロット</strong><p>買い切りのApp内課金でシート追加の上限を拡張。必要な枚数だけ「シート管理」から追加できます。</p></div>
+    <section class="section section-soft" id="about">
+      <div class="section-inner philosophy">
+        <div>
+          <p class="section-kicker">About Rainbow Juice</p>
+          <h2>欲しいものは、<br>自分で作る。</h2>
+          <p class="section-lead">Rainbow Juiceは、自分や身近な人の「ちょっと困った」を、iPhoneアプリで解決する個人開発ブランドです。</p>
         </div>
-        <p class="fine">購入すると5枚が自動生成されるわけではありません。Liteの価格はアプリ内の購入画面でご確認ください。シート切替中も、再生中の音は続きます。</p>
+        <div class="principles">
+          <article class="principle">
+            <span class="principle-number">01</span>
+            <h3>身近な困りごとから</h3>
+            <p>毎日のなかで感じる「もう少しこうだったら」を出発点に、小さくても本当に役立つ機能へ変えていきます。</p>
+          </article>
+          <article class="principle">
+            <span class="principle-number">02</span>
+            <h3>AIも相棒に、楽しみながら</h3>
+            <p>新しい技術を活かしながら、趣味としての好奇心を忘れず、使いやすいiPhoneアプリを丁寧に作ります。</p>
+          </article>
+          <article class="principle">
+            <span class="principle-number">03</span>
+            <h3>使われるほど、次が作れる</h3>
+            <p>ダウンロードや応援の一つひとつが、今あるアプリの改善と、次の「欲しいもの」を作り続ける力になります。</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section" id="support">
-      <div class="wrap">
-        <div class="support">
-          <p class="eyebrow">Support</p><h2>使い方や不具合のご相談</h2>
-          <p>お問い合わせの際は「MusicStart」と、端末の種類・操作した内容をお知らせください。</p>
-          <div class="actions"><a class="button button-primary" href="mailto:rainbow.devlog@gmail.com?subject=MusicStart%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールで問い合わせる</a><a class="button button-ghost" href="https://rainbowdevlog.hatenablog.com/entry/2026/11/02/183453" target="_blank" rel="noopener noreferrer">使い方マニュアル ↗</a><a class="button button-ghost" href="https://rainbowdevlog.hatenablog.com/entry/2026/11/01/231036" target="_blank" rel="noopener noreferrer">プライバシーポリシー ↗</a></div>
+      <div class="section-inner">
+        <div class="support-card">
+          <p class="section-kicker">Support</p>
+          <h2>お困りのことは<br>ありませんか？</h2>
+          <p>不具合のご報告、ご要望、ご質問を受け付けています。対象のアプリ名と状況を添えていただくと、スムーズに確認できます。</p>
+          <div class="support-actions">
+            <a class="button button-primary" href="mailto:rainbow.devlog@gmail.com">メールで問い合わせる</a>
+            <a class="button button-secondary" href="https://x.com/RainbowsDevlog" target="_blank" rel="noopener noreferrer">Xでフォローする&nbsp;↗</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
-  <footer><div class="wrap footer-inner"><span>© <span id="year">2026</span> Rainbow Juice. All rights reserved.</span><div class="footer-links"><a href="/">Rainbow Juice トップ</a><a href="https://rainbowdevlog.hatenablog.com/entry/2026/11/01/231036" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a><a href="mailto:rainbow.devlog@gmail.com">お問い合わせ</a></div></div></footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>&copy; <span id="year">2026</span> Rainbow Juice. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#apps">アプリ一覧</a>
+        <a href="#support">サポート</a>
+        <a href="mailto:rainbow.devlog@gmail.com">お問い合わせ</a>
+        <a href="https://x.com/RainbowsDevlog" target="_blank" rel="noopener noreferrer">X</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
